@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>Publicaciones Guardadas</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-list *ngIf="publications.length > 0; else noPublications">
+    <ion-item *ngFor="let pub of publications; let i = index">
+      <ion-card>
+        <ion-card-header>
+          <ion-card-title>{{ pub.title }}</ion-card-title>
+          <ion-card-subtitle>{{ pub.subtitle }}</ion-card-subtitle>
+          <!-- format data -->
+          <ion-card-subtitle>{{ formatDate(pub.date) }}</ion-card-subtitle>
+        </ion-card-header>
+        <ion-card-content>
+          <img *ngIf="pub.photo" [src]="pub.photo" alt="Photo">
+          <p>{{ pub.description }}</p>
+          <ion-button (click)="deletePublication(i)" color="danger">Delete</ion-button>
+        </ion-card-content>
+      </ion-card>
+    </ion-item>
+  </ion-list>
+
+  <!-- mostrar si no hay bpublicaciones guardadas -->
+  <ng-template #noPublications>
+    <ion-item>
+      <ion-label>No hay publicaciones guardadas</ion-label>
+    </ion-item>
+  </ng-template>
+</ion-content>

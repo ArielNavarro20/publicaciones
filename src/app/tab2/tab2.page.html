@@ -1,0 +1,53 @@
+<ion-card>
+  <ion-header>
+    <ion-toolbar>
+      <ion-buttons slot="start">
+        <ion-back-button defaultHref="/tabs/tab1"></ion-back-button>
+      </ion-buttons>
+      <ion-title>Nueva Publicacion</ion-title>
+    </ion-toolbar>
+  </ion-header>
+
+  <!-- Input para Titulo -->
+  <ion-item>
+    <ion-label position="floating">Título</ion-label>
+    <ion-input [(ngModel)]="publication.title"></ion-input>
+    <ion-note color="danger" *ngIf="errors.title">{{ errors.title }}</ion-note>
+  </ion-item>
+
+  <!-- Input para Subtitulo -->
+  <ion-item>
+    <ion-label position="floating">Subtítulo</ion-label>
+    <ion-input [(ngModel)]="publication.subtitle"></ion-input>
+  </ion-item>
+
+  <!-- Input para descripcion -->
+  <ion-item>
+    <ion-label position="floating">Descripción</ion-label>
+    <ion-textarea [(ngModel)]="publication.description"></ion-textarea>
+    <ion-note color="danger" *ngIf="errors.description">{{ errors.description }}</ion-note>
+  </ion-item>
+
+   <!-- boton guardar -->
+   <ion-button expand="block" (click)="savePublication()">Guardar Publicación</ion-button>
+
+  <!-- carga foto-->
+  <ion-item>
+    <ion-label position="stacked">Foto</ion-label>
+    <ion-button expand="full" (click)="capturePhoto()">Capturar Foto</ion-button>
+    <img *ngIf="publication.photo" [src]="publication.photo" alt="Photo" style="width: 100%; margin-top: 10px;">
+  </ion-item>
+
+
+  <!-- mostrar publicacion -->
+  <ion-card *ngIf="savedPublication">
+    <ion-card-header>
+      <ion-card-title>{{ savedPublication.title }}</ion-card-title>
+      <ion-card-subtitle>{{ savedPublication.subtitle }}</ion-card-subtitle>
+    </ion-card-header>
+    <ion-card-content>
+      <img *ngIf="savedPublication.photo" [src]="savedPublication.photo" alt="Photo">
+      <p>{{ savedPublication.description }}</p>
+    </ion-card-content>
+  </ion-card>
+</ion-card>

@@ -1,0 +1,8 @@
+{
+  "name": "Publicaciones",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular",
+  "id": "b3752056"
+}
